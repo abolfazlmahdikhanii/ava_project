@@ -1,0 +1,51 @@
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: bold;
+  src: url("../src/assets/fonts/iranyekanbold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: 300;
+  src: url("../src/assets/fonts/iranyekanlight.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: iranyekan;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../src/assets/fonts/iranyekanregular.woff2") format("woff2");
+}
+
+/* Latin fonts (Roboto) */
+
+@font-face {
+  font-family: roboto;
+  font-style: normal;
+  font-weight: bold;
+  src: url("../src/assets/fonts/robotobold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: roboto;
+  font-style: normal;
+  font-weight: 300;
+  src: url("../src/assets/fonts/robotolight.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: roboto;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../src/assets/fonts/robotoregular.woff2") format("woff2");
+}
+/* iran sans */
+
+@font-face {
+  font-family: IrSans;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../src/assets/fonts/IRANSansWeb_FaNum.woff") format("woff");
+}
