@@ -49,6 +49,10 @@ const sidebarItems = [
           fill="white"
         />
       </svg>,
+<<<<<<< HEAD
+=======
+      href: "/",
+>>>>>>> c51ed5d (Add solution for challenge 2)
   },
   {
     id: crypto.randomUUID(),
@@ -69,6 +73,10 @@ const sidebarItems = [
           fill="white"
         />
       </svg>,
+<<<<<<< HEAD
+=======
+      href:"my-archive"
+>>>>>>> c51ed5d (Add solution for challenge 2)
   },
 ];
 const Sidebar = () => {

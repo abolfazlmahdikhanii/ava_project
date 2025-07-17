@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -27,3 +28,7 @@ dist-ssr
 .vite
 node_modules
 >>>>>>> 71d7a50 (Add solution for challenge)
+=======
+.vite
+node_modules
+>>>>>>> c51ed5d (Add solution for challenge 2)
