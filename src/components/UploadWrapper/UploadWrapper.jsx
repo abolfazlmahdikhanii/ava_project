@@ -104,12 +104,12 @@ const UploadWrapper = ({ activeTab }) => {
           : "rounded-[25px] "
       }`}
     >
-      {/* <div className="flex flex-col items-center justify-center h-full">
+      <div className="flex flex-col items-center justify-center h-full">
         {uploadContent}
-      </div> */}
-      <div className=" py-2 px-5">
+      </div>
+{/*       <div className=" py-2 px-5">
           <UploadContent />
-        </div>
+        </div> */}
     </div>
   );
 };
