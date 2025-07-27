@@ -1,11 +1,25 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React, { useRef, useState } from "react";
+>>>>>>> 0604e09 (Add solution for challenge 3)
 import UploadTab from "../components/UploadTab/UploadTab";
 import UploadWrapper from "../components/UploadWrapper/UploadWrapper";
 import Dropdown from "../components/Dropdown/Dropdown";
 
+<<<<<<< HEAD
 
 const Speech = () => {
   const [activeTab, setActiveTab] = useState("record");
+=======
+const Speech = () => {
+  const [activeTab, setActiveTab] = useState("record");
+
+
+  const [selectedLanguage, setSelectedLanguage] = useState("persian");
+
+ 
+>>>>>>> 0604e09 (Add solution for challenge 3)
   return (
     <section className="mt-[10px] w-full flex flex-col ">
       {/* title */}
@@ -84,7 +98,10 @@ const Speech = () => {
             onActive={setActiveTab}
             activeTab={activeTab}
           >
+<<<<<<< HEAD
      
+=======
+>>>>>>> 0604e09 (Add solution for challenge 3)
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="17"
@@ -104,7 +121,11 @@ const Speech = () => {
           </UploadTab>
         </div>
 
+<<<<<<< HEAD
         <UploadWrapper activeTab={activeTab} />
+=======
+        <UploadWrapper activeTab={activeTab}  />
+>>>>>>> 0604e09 (Add solution for challenge 3)
         <div className="flex items-center gap-x-4 justify-end mt-4">
           <p className="text-[#626262] text-sm font-light">زبان گفتار :</p>
           <Dropdown

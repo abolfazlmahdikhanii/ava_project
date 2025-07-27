@@ -4,6 +4,13 @@
 :root {
   --font-sans: iranyekan, Roboto, sans-serif;
   --font-display: IrSans, sans-serif;
+<<<<<<< HEAD
+=======
+
+  --primary:#40C6B8;
+  --blue:#118AD3;
+  --red:#FF1654
+>>>>>>> 0604e09 (Add solution for challenge 3)
 }
 
 body {
@@ -69,6 +76,19 @@ body {
   background: #d1d1d1; /* Or any Tailwind color */
 }
 
+<<<<<<< HEAD
+=======
+[data-type="link"]{
+border-color:var(--red);
+}
+[data-type="upload"]{
+border-color:var(--blue);
+}
+[data-type="record"]{
+border-color:var(--primary);
+}
+
+>>>>>>> 0604e09 (Add solution for challenge 3)
 .active-tab {
   @apply after:absolute after:-bottom-5 after:-right-1.5 after:inline-block after:h-[1.5px] after:w-[120%] after:bg-black font-normal;
 }
@@ -77,7 +97,11 @@ body {
 }
 
 .archive-item {
+<<<<<<< HEAD
   @apply grid grid-cols-11 w-full  px-2 py-4  items-center gap-x-10 relative after:absolute after:bottom-0 after:h-[1px] after:w-[92%] after:z-[1] after:right-7 after:mx-auto hover:after:bg-gray-200 after:transition-all after:duration-200;
+=======
+  @apply grid grid-cols-12 w-full  px-2 py-4  items-center gap-x-10 relative after:absolute after:bottom-0 after:h-[1px] after:w-[96%] after:z-[1] after:right-3 after:mx-auto hover:after:bg-gray-200 after:transition-all after:duration-200;
+>>>>>>> 0604e09 (Add solution for challenge 3)
 }
 .archive-item__btn {
   @apply h-7 w-7 p-0 grid place-items-center text-gray-400 transition-all duration-200 cursor-pointer;
@@ -94,3 +118,23 @@ body {
 .upload-type {
   @apply w-[32px] h-[32px] rounded-full grid place-items-center text-white;
 }
+<<<<<<< HEAD
+=======
+
+.custom-toast {
+  font: inherit;
+  width: fit-content;
+  /*text-align: center;
+  */padding: 15px 15px 15px 25px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  font-size: 14px;
+}
+
+.recording-btn{
+  @apply  after:absolute after:inline-flex after:h-[95%] after:w-full after:animate-ping after:rounded-full after:bg-[#00B3A1] after:opacity-75
+}
+>>>>>>> 0604e09 (Add solution for challenge 3)

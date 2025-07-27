@@ -33,3 +33,9 @@
 >>>>>>> c51ed5d (Add solution for challenge 2)
   }
 }
+
+{
+  "dependencies": {
+    "react-hot-toast": "^2.5.2"
+  }
+}

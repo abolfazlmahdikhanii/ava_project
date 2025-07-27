@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import Icon from "../Icon/Icon";
+<<<<<<< HEAD
 
 const UploadContent = ({ type, playerColor }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -37,6 +38,29 @@ const UploadContent = ({ type, playerColor }) => {
     { time: "00:12", endTime: "00:16", text: "برای", isActive: false },
   ];
 
+=======
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
+import { formatDuration, formatTime } from "../../helper/helper";
+
+const UploadContent = ({
+  type,
+  playerColor,
+  contents,
+  url,
+  duration,
+  onRetry,
+}) => {
+  const [activeTab, setActiveTab] = useState("simple-text");
+  const [activeCurrentContent, setActiveCurrentContent] = useState(0);
+
+  const checkActivityContent = (time) => {
+    setActiveCurrentContent(time);
+  };
+  const timeToSeconds = (timeStr) => {
+    const [hours, minutes, seconds] = timeStr.split(":").map(Number);
+    return hours * 3600 + minutes * 60 + seconds;
+  };
+>>>>>>> 0604e09 (Add solution for challenge 3)
   return (
     <div className=" bg-white flex-col justify-between flex h-full">
       {/* Header */}
@@ -48,7 +72,13 @@ const UploadContent = ({ type, playerColor }) => {
         <div className="flex items-center gap-8 ">
           <span
             className={`  inline-flex gap-x-2 items-center text-sm relative cursor-pointer    ${
+<<<<<<< HEAD
               activeTab === "simple-text" ? "active-tab text-black" : "font-light text-gray-500"
+=======
+              activeTab === "simple-text"
+                ? "active-tab text-black"
+                : "font-light text-gray-500"
+>>>>>>> 0604e09 (Add solution for challenge 3)
             }`}
             onClick={(e) => {
               e.stopPropagation();
@@ -66,7 +96,13 @@ const UploadContent = ({ type, playerColor }) => {
           </span>
           <span
             className={`  inline-flex gap-x-2 items-center text-sm relative cursor-pointer  ${
+<<<<<<< HEAD
               activeTab === "time-text" ? "active-tab text-black" : "font-light text-gray-500"
+=======
+              activeTab === "time-text"
+                ? "active-tab text-black"
+                : "font-light text-gray-500"
+>>>>>>> 0604e09 (Add solution for challenge 3)
             }`}
             onClick={(e) => {
               e.stopPropagation();
@@ -103,7 +139,14 @@ const UploadContent = ({ type, playerColor }) => {
                 color="none"
               />
             </button>
+<<<<<<< HEAD
             <button className="bg-[#118AD3] hover:bg-blue-600 text-white w-[112px] h-[34px] rounded-[20px] text-sm flex items-center gap-1.5 justify-center cursor-pointer font-light">
+=======
+            <button
+              className="bg-[#118AD3] hover:bg-blue-600 text-white w-[112px] h-[34px] rounded-[20px] text-sm flex items-center gap-1.5 justify-center cursor-pointer font-light"
+              onClick={onRetry}
+            >
+>>>>>>> 0604e09 (Add solution for challenge 3)
               <Icon
                 width={12}
                 height={13}
@@ -121,7 +164,11 @@ const UploadContent = ({ type, playerColor }) => {
       <div className="bg-gray-50 h-[280px] mt-2 pt-1 pb-2 custom-scrollbar overflow-y-auto pl-3 ">
         {activeTab === "time-text" && (
           <>
+<<<<<<< HEAD
             {transcriptItems.map((item, index) => (
+=======
+            {contents?.map((item, index) => (
+>>>>>>> 0604e09 (Add solution for challenge 3)
               <div
                 key={index}
                 className={`flex items-center  h-[62px] px-5 p rounded-[20px] cursor-pointer  ${
@@ -130,6 +177,7 @@ const UploadContent = ({ type, playerColor }) => {
               >
                 <div
                   className={`flex items-center gap-4 font-light   pr-4 ${
+<<<<<<< HEAD
                     item.isActive ? "text-[#118AD3] " : "text-[rgba(0,0,0,.8)]"
                   }`}
                 >
@@ -140,11 +188,31 @@ const UploadContent = ({ type, playerColor }) => {
                   <span
                     className={`font-light ${
                       item.isActive
+=======
+                    activeCurrentContent >= timeToSeconds(item.start) &&
+                    activeCurrentContent < timeToSeconds(item.end)
+                      ? "text-[#118AD3] "
+                      : "text-[rgba(0,0,0,.8)]"
+                  }`}
+                >
+                  <span className="font-num">{item.start}</span>
+                  <span className="font-num">{item.end}</span>
+                </div>
+                <div className="mr-6 w-full overflow-hidden">
+                  <span
+                    className={`font-light line-clamp-1 leading-[1.8] ${
+                      activeCurrentContent >= timeToSeconds(item.start) &&
+                      activeCurrentContent < timeToSeconds(item.end)
+>>>>>>> 0604e09 (Add solution for challenge 3)
                         ? "text-[#118AD3] "
                         : "text-[rgba(0,0,0,.8)]"
                     }`}
                   >
+<<<<<<< HEAD
                     [{item.text}]
+=======
+                    [{item.text.length ? item.text : "---"}]
+>>>>>>> 0604e09 (Add solution for challenge 3)
                   </span>
                 </div>
               </div>
@@ -154,6 +222,7 @@ const UploadContent = ({ type, playerColor }) => {
 
         {activeTab === "simple-text" && (
           <p className="font-light leading-[1.8] py-3">
+<<<<<<< HEAD
             [با][---][---] [با] و[---][---] [با][---][---][---][---] کجایی تو
             [خوش] می دیدی من خسته شدم [ما را] [به] این [زودی] چه جوری شد [عشق
             شدی] به این است[---] [آخرش] سی با فکر [و] چقدر [نزار می خوام] که
@@ -161,11 +230,28 @@ const UploadContent = ({ type, playerColor }) => {
             [آرام] ولی ازت می خوام[---] بر نگردی هر کسی که به [تو] باشه[---]
             کاشکی تو منو [بردی] [که چشمک][---] با[---][---][---][---][---]
             [ابو][---] [با] و و و و و [او]
+=======
+            {contents?.map((item, index) => {
+              const isActive =
+                activeCurrentContent >= timeToSeconds(item.start) &&
+                activeCurrentContent < timeToSeconds(item.end);
+
+              return (
+                <span
+                  key={index}
+                  className={isActive ? "text-[#00ba9f] font-normal" : ""}
+                >
+                  {item.text?item.text:`[---]`}{" "}
+                </span>
+              );
+            })}
+>>>>>>> 0604e09 (Add solution for challenge 3)
           </p>
         )}
       </div>
 
       {/* Audio Player Controls */}
+<<<<<<< HEAD
       <div className="bg-white  w-10/12 mx-auto pt-3 max-w-[520px] ">
         <div className="flex items-center gap-2 bg-[#f8f8f8] h-[34px] px-3 rounded-[10px]">
           {/* Volume Control */}
@@ -258,6 +344,14 @@ const UploadContent = ({ type, playerColor }) => {
           </button>
         </div>
       </div>
+=======
+      <AudioPlayer
+        playerColor={playerColor}
+        audioUrl={url}
+        durationAudio={duration}
+        onActive={checkActivityContent}
+      />
+>>>>>>> 0604e09 (Add solution for challenge 3)
     </div>
   );
 };
