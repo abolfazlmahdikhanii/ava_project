@@ -1,0 +1,200 @@
+@import "tailwindcss";
+@import "./font.css";
+
+:root {
+  --font-sans: iranyekan, Roboto, sans-serif;
+  --font-display: IrSans, sans-serif;
+
+  --primary: #40c6b8;
+  --blue: #118ad3;
+  --red: #ff1654;
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  background-color: #fefefe;
+  direction: rtl;
+  height: 100dvh;
+}
+.font-num {
+  font-family: var(--font-display);
+}
+.bg-aside {
+  background-image: url("../src/assets/images/side-bar_bg.png"),
+    linear-gradient(135deg, #00b5a0 0%, #00c69b 100%);
+  background-size: 225px, cover;
+  background-position: top right;
+}
+.record--active {
+  border: 1px solid #00ba9f;
+}
+
+.record--active-tab {
+  background-color: #00ba9f;
+  padding-inline: 32px;
+  max-width: 144px;
+}
+.upload--active {
+  border: 1px solid #118ad3;
+}
+.upload--active-tab {
+  padding-inline: 15px;
+  background-color: #118ad3;
+  max-width: 144px;
+}
+.url--active {
+  border: 1px solid #ff1654;
+}
+.url--active-tab {
+  background-color: #ff1654;
+  padding-inline: 20px;
+}
+
+/* Customize the entire scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Customize the scrollbar track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 5px;
+}
+
+/* Customize the scrollbar thumb */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #dadada; /* Or any Tailwind color */
+  border-radius: 5px; /* Optional: for rounded corners */
+}
+
+/* Optional: Customize when the scrollbar is hovered */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #d1d1d1; /* Or any Tailwind color */
+}
+
+[data-type="link"] {
+  border-color: var(--red);
+}
+[data-type="upload"] {
+  border-color: var(--blue);
+}
+[data-type="record"] {
+  border-color: var(--primary);
+}
+
+.active-tab {
+  @apply after:absolute after:-bottom-5 after:-right-1.5 after:inline-block after:h-[1.5px] after:w-[120%] after:bg-black font-normal;
+}
+.upload-wrapper__btn {
+  @apply w-[62px] h-[62px] grow-0 text-white grid place-items-center rounded-full cursor-pointer transition-all duration-200;
+}
+
+.archive-item {
+  @apply grid grid-cols-12 w-full  px-2 py-4  items-center gap-x-10 relative after:absolute after:bottom-0 after:h-[1px] after:w-[96%] after:z-[1] after:right-3 after:mx-auto hover:after:bg-gray-200 after:transition-all after:duration-200 disabled:cursor-not-allowed;
+}
+.archive-item__btn {
+  @apply h-7 w-7 p-0 grid place-items-center text-gray-400 transition-all duration-200 cursor-pointer;
+}
+.archive-item__btn-primary {
+  @apply hover:text-[#07B49B];
+}
+.archive-item__btn-remove {
+  @apply hover:text-white;
+}
+.tooltip {
+  @apply text-xs px-4 py-2 rounded-[4px] shadow-md shadow-gray-300/40 absolute top-6 z-[2] whitespace-nowrap text-[rgba(0,0,0,.7)]  left-3 bg-white invisible group-hover:visible group-hover:text-[rgba(0,0,0,.7)] opacity-0 group-hover:opacity-100 transition-all duration-200;
+}
+.upload-type {
+  @apply w-[32px] h-[32px] rounded-full grid place-items-center text-white;
+}
+
+.custom-toast {
+  font: inherit;
+  width: fit-content;
+  max-width: max-content;
+  white-space: nowrap;
+  /*text-align: center;
+  */
+  padding: 15px 15px 15px 25px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  font-size: 14px;
+}
+
+.recording-btn {
+  @apply after:absolute after:inline-flex after:h-[95%] after:w-full after:animate-ping after:rounded-full after:bg-[#00B3A1] after:opacity-75;
+}
+
+/* Start Loader */
+
+.spinner {
+  --gap: 6px;
+  /* gap between each circle */
+  width: 100px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+}
+
+.spinner span {
+  width: 9px;
+  height: 9px;
+  border-radius: 100%;
+  background-color: var(--primary);
+  opacity: 0;
+}
+
+.spinner span:nth-child(1) {
+  animation: fade 1s ease-in-out infinite;
+}
+
+.spinner span:nth-child(2) {
+  animation: fade 1s ease-in-out 0.33s infinite;
+}
+
+.spinner span:nth-child(3) {
+  animation: fade 1s ease-in-out 0.66s infinite;
+}
+
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
+  }
+}
+
+/* empty-list */
+.emptyContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+}
+.emptyInfo {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.emptyTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.emptyDesc {
+  color: #7e8288;
+  margin-bottom: 25px;
+}
