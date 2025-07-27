@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -37,3 +38,7 @@ node_modules
 .vite
 node_modules
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+node_modules
+.vite
+>>>>>>> 574ed32 (Add solution for challenge 4)

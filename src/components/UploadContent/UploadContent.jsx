@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useRef } from "react";
 import Icon from "../Icon/Icon";
 <<<<<<< HEAD
@@ -61,6 +62,65 @@ const UploadContent = ({
     return hours * 3600 + minutes * 60 + seconds;
   };
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+import React, { useState, useRef, useEffect } from "react";
+import Icon from "../Icon/Icon";
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
+import {
+  copyTextHandler,
+  formatDuration,
+  formatTime,
+  timeToSeconds,
+  toastOption,
+} from "../../helper/helper";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  resetUploading,
+  setActiveAudioTime,
+  setActiveContent,
+  setPlayerColor,
+} from "../../Redux/store/Transcribe";
+import { useLocation } from "react-router-dom";
+import toast from "react-hot-toast";
+
+const UploadContent = ({ type }) => {
+  const { currentUpload, selectedArchive, activeContent, activeTime } =
+    useSelector((state) => state.transcribe);
+  const dispatch = useDispatch();
+  const [activeTab, setActiveTab] = useState("simple-text");
+  const {
+    segments: contents,
+    url,
+    filename,
+  } = type === "archive" ? selectedArchive : currentUpload;
+
+  const checkIsActiveContent = (start, end) => {
+    return (
+      activeContent >= timeToSeconds(start) &&
+      activeContent < timeToSeconds(end)
+    );
+  };
+  function downloadText(text, filename) {
+    if (!text?.some((item) => item.text?.trim() !== "")) {
+      toast.error("متن قابل کپی وجود ندارد", toastOption);
+      return;
+    }
+    const txt = text.map((item) => item.text).join(" ");
+
+    // Create a Blob with the text
+    const blob = new Blob([txt], { type: "text/plain" });
+
+    // Create  link element
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = filename||"download_text" + ".txt";
+
+    //  download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+>>>>>>> 574ed32 (Add solution for challenge 4)
   return (
     <div className=" bg-white flex-col justify-between flex h-full">
       {/* Header */}
@@ -73,12 +133,18 @@ const UploadContent = ({
           <span
             className={`  inline-flex gap-x-2 items-center text-sm relative cursor-pointer    ${
 <<<<<<< HEAD
+<<<<<<< HEAD
               activeTab === "simple-text" ? "active-tab text-black" : "font-light text-gray-500"
 =======
               activeTab === "simple-text"
                 ? "active-tab text-black"
                 : "font-light text-gray-500"
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+              activeTab === "simple-text"
+                ? "active-tab text-black"
+                : "font-light text-gray-500"
+>>>>>>> 574ed32 (Add solution for challenge 4)
             }`}
             onClick={(e) => {
               e.stopPropagation();
@@ -97,12 +163,18 @@ const UploadContent = ({
           <span
             className={`  inline-flex gap-x-2 items-center text-sm relative cursor-pointer  ${
 <<<<<<< HEAD
+<<<<<<< HEAD
               activeTab === "time-text" ? "active-tab text-black" : "font-light text-gray-500"
 =======
               activeTab === "time-text"
                 ? "active-tab text-black"
                 : "font-light text-gray-500"
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+              activeTab === "time-text"
+                ? "active-tab text-black"
+                : "font-light text-gray-500"
+>>>>>>> 574ed32 (Add solution for challenge 4)
             }`}
             onClick={(e) => {
               e.stopPropagation();
@@ -121,7 +193,14 @@ const UploadContent = ({
         </div>
         {type !== "archive" && (
           <div className="flex items-center gap-5">
+<<<<<<< HEAD
             <button className="text-[#8F8F8F] cursor-pointer">
+=======
+            <button
+              className="text-[#8F8F8F] cursor-pointer"
+              onClick={() => downloadText(contents, filename)}
+            >
+>>>>>>> 574ed32 (Add solution for challenge 4)
               <Icon
                 width={14}
                 height={15}
@@ -130,7 +209,14 @@ const UploadContent = ({
                 color="none"
               />
             </button>
+<<<<<<< HEAD
             <button className="text-[#8F8F8F] cursor-pointer">
+=======
+            <button
+              className="text-[#8F8F8F] cursor-pointer"
+              onClick={() => copyTextHandler(contents)}
+            >
+>>>>>>> 574ed32 (Add solution for challenge 4)
               <Icon
                 width={16}
                 height={18}
@@ -140,6 +226,7 @@ const UploadContent = ({
               />
             </button>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <button className="bg-[#118AD3] hover:bg-blue-600 text-white w-[112px] h-[34px] rounded-[20px] text-sm flex items-center gap-1.5 justify-center cursor-pointer font-light">
 =======
             <button
@@ -147,6 +234,12 @@ const UploadContent = ({
               onClick={onRetry}
             >
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+            <button
+              className="bg-[#118AD3] hover:bg-blue-600 text-white w-[112px] h-[34px] rounded-[20px] text-sm flex items-center gap-1.5 justify-center cursor-pointer font-light"
+              onClick={() => dispatch(resetUploading())}
+            >
+>>>>>>> 574ed32 (Add solution for challenge 4)
               <Icon
                 width={12}
                 height={13}
@@ -161,6 +254,7 @@ const UploadContent = ({
       </div>
 
       {/* Transcript/Timeline */}
+<<<<<<< HEAD
       <div className="bg-gray-50 h-[280px] mt-2 pt-1 pb-2 custom-scrollbar overflow-y-auto pl-3 ">
         {activeTab === "time-text" && (
           <>
@@ -191,6 +285,24 @@ const UploadContent = ({
 =======
                     activeCurrentContent >= timeToSeconds(item.start) &&
                     activeCurrentContent < timeToSeconds(item.end)
+=======
+      <div
+        className={`bg-white h-[280px] mt-2 pt-1 pb-2 custom-scrollbar overflow-y-auto pl-3 `}
+      >
+        {activeTab === "time-text" && (
+          <>
+            {contents?.map((item, index) => (
+              <div
+                key={index}
+                className={`flex items-center  h-[62px] px-5 p rounded-[20px] cursor-pointer select-none  ${
+                  index % 2 == 0 ? "bg-[#F2F2F2]" : "bg-white hover:bg-gray-50"
+                }`}
+                onClick={() => dispatch(setActiveAudioTime(item.start))}
+              >
+                <div
+                  className={`flex items-center gap-4 font-light   pr-4 ${
+                    checkIsActiveContent(item.start, item.end)
+>>>>>>> 574ed32 (Add solution for challenge 4)
                       ? "text-[#118AD3] "
                       : "text-[rgba(0,0,0,.8)]"
                   }`}
@@ -201,18 +313,26 @@ const UploadContent = ({
                 <div className="mr-6 w-full overflow-hidden">
                   <span
                     className={`font-light line-clamp-1 leading-[1.8] ${
+<<<<<<< HEAD
                       activeCurrentContent >= timeToSeconds(item.start) &&
                       activeCurrentContent < timeToSeconds(item.end)
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+                      checkIsActiveContent(item.start, item.end)
+>>>>>>> 574ed32 (Add solution for challenge 4)
                         ? "text-[#118AD3] "
                         : "text-[rgba(0,0,0,.8)]"
                     }`}
                   >
 <<<<<<< HEAD
+<<<<<<< HEAD
                     [{item.text}]
 =======
                     [{item.text.length ? item.text : "---"}]
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+                    [{item.text.length ? item.text : "---"}]
+>>>>>>> 574ed32 (Add solution for challenge 4)
                   </span>
                 </div>
               </div>
@@ -222,6 +342,7 @@ const UploadContent = ({
 
         {activeTab === "simple-text" && (
           <p className="font-light leading-[1.8] py-3">
+<<<<<<< HEAD
 <<<<<<< HEAD
             [با][---][---] [با] و[---][---] [با][---][---][---][---] کجایی تو
             [خوش] می دیدی من خسته شدم [ما را] [به] این [زودی] چه جوری شد [عشق
@@ -235,22 +356,34 @@ const UploadContent = ({
               const isActive =
                 activeCurrentContent >= timeToSeconds(item.start) &&
                 activeCurrentContent < timeToSeconds(item.end);
+=======
+            {contents?.map((item, index) => {
+              const isActive = checkIsActiveContent(item.start, item.end);
+>>>>>>> 574ed32 (Add solution for challenge 4)
 
               return (
                 <span
                   key={index}
                   className={isActive ? "text-[#00ba9f] font-normal" : ""}
                 >
+<<<<<<< HEAD
                   {item.text?item.text:`[---]`}{" "}
                 </span>
               );
             })}
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+                  {item.text ? item.text : `[---]`}{" "}
+                </span>
+              );
+            })}
+>>>>>>> 574ed32 (Add solution for challenge 4)
           </p>
         )}
       </div>
 
       {/* Audio Player Controls */}
+<<<<<<< HEAD
 <<<<<<< HEAD
       <div className="bg-white  w-10/12 mx-auto pt-3 max-w-[520px] ">
         <div className="flex items-center gap-2 bg-[#f8f8f8] h-[34px] px-3 rounded-[10px]">
@@ -352,6 +485,9 @@ const UploadContent = ({
         onActive={checkActivityContent}
       />
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+      <AudioPlayer />
+>>>>>>> 574ed32 (Add solution for challenge 4)
     </div>
   );
 };

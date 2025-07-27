@@ -15,16 +15,27 @@ const Dropdown = ({
     if (type === "select" && !selectedItem && items.length > 0) {
       setSelectedItem(items[0]);
     }
+<<<<<<< HEAD
   }, [type, selectedItem, items]);
 
   const toggleDropdown = () => setIsShow((prev) => !prev);
   
+=======
+  }, [type,selectedItem, items]);
+
+  const toggleDropdown = () => setIsShow((prev) => !prev);
+
+>>>>>>> 574ed32 (Add solution for challenge 4)
   const handleItemClick = (item) => {
     if (type === "select") setSelectedItem(item);
     setIsShow(false);
   };
 
+<<<<<<< HEAD
   // Mouse leave handler - only close if type is not "select"
+=======
+  //  close if type is not "select"
+>>>>>>> 574ed32 (Add solution for challenge 4)
   const handleMouseLeave = () => {
     if (type !== "select") {
       setIsShow(false);
@@ -70,11 +81,15 @@ const Dropdown = ({
         <div className="absolute w-[101%] left-[-0.5px] border border-t-0 border-[#00BA9F] pl-4 pr-4 rounded-b-[20px] bg-white z-10">
           {items.map((item, index) => {
             const shouldShowItem =
+<<<<<<< HEAD
               type === "select"
                 ? selectedItem
                   ? item.id !== selectedItem.id
                   : index !== 0
                 : true;
+=======
+              type === "select" ? item.id !== selectedItem.id : true;
+>>>>>>> 574ed32 (Add solution for challenge 4)
 
             return (
               shouldShowItem && (
@@ -95,4 +110,8 @@ const Dropdown = ({
   );
 };
 
+<<<<<<< HEAD
 export default Dropdown;
+=======
+export default Dropdown;
+>>>>>>> 574ed32 (Add solution for challenge 4)

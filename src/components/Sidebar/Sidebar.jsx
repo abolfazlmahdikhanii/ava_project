@@ -51,12 +51,16 @@ const sidebarItems = [
       </svg>,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       href: "/",
 >>>>>>> c51ed5d (Add solution for challenge 2)
 =======
       href: "/",
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+      href: "/",
+>>>>>>> 574ed32 (Add solution for challenge 4)
   },
   {
     id: crypto.randomUUID(),
@@ -79,12 +83,16 @@ const sidebarItems = [
       </svg>,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       href:"my-archive"
 >>>>>>> c51ed5d (Add solution for challenge 2)
 =======
       href:"my-archive"
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+      href:"my-archive"
+>>>>>>> 574ed32 (Add solution for challenge 4)
   },
 ];
 const Sidebar = () => {

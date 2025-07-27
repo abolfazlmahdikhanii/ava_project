@@ -1,11 +1,51 @@
 import React from "react";
+<<<<<<< HEAD
 
 const DeleteModal = ({ onClose, message, itemName, handleConfirm }) => {
+=======
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getArchiveData,
+  removeArchive,
+  setRemoveContent,
+} from "../../Redux/store/Transcribe";
+import { toastOption } from "../../helper/helper";
+import toast from "react-hot-toast";
+
+const DeleteModal = () => {
+  const {
+    removeItem,
+    pagination: { currentPage },
+  } = useSelector((state) => state.transcribe);
+  const dispatch = useDispatch();
+  const removeRequestHandler = async () => {
+    closeModalHandler();
+    try {
+    
+      const removeAction = await dispatch(removeArchive(removeItem.id));
+      if (removeArchive.fulfilled.match(removeAction)) {
+        toast.success("حذف با موفقیت انجام شد", toastOption);
+        dispatch(getArchiveData(currentPage));
+      } else if (removeArchive.rejected.match(removeAction)) {
+        toast.error("حذف با خطا مواجه شد ", toastOption);
+      }
+    } catch (error) {
+      // Update toast to error
+      toast.error("خطای پیش بینی نشده! لطفاً دوباره تلاش کنید", {
+        ...toastOption,
+      });
+    }
+  };
+  const closeModalHandler = () => {
+    dispatch(setRemoveContent(null));
+  };
+>>>>>>> 574ed32 (Add solution for challenge 4)
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+<<<<<<< HEAD
         onClick={onClose}
       />
 
@@ -14,6 +54,16 @@ const DeleteModal = ({ onClose, message, itemName, handleConfirm }) => {
         {/* Close button */}
         <button
           onClick={onClose}
+=======
+        // onClick={closeModalHandler}
+      />
+
+      {/* Modal */}
+      <div className="relative bg-white rounded-lg shadow-xl max-w-[520px] w-full mx-4 p-6 rtl">
+        {/* Close button */}
+        <button
+          onClick={closeModalHandler}
+>>>>>>> 574ed32 (Add solution for challenge 4)
           className="absolute top-4 left-4 text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100"
         >
           <svg
@@ -55,8 +105,20 @@ const DeleteModal = ({ onClose, message, itemName, handleConfirm }) => {
         {/* Content */}
         <div className="text-center mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">حذف</h3>
+<<<<<<< HEAD
           <p className="text-gray-600 leading-relaxed">
             آیا مطمئن هستید که می‌خواهید {itemName} را حذف کنید؟
+=======
+          <p className="text-gray-600 leading-[1.8] flex items-center flex-wrap gap-1.5 justify-center">
+            آیا مطمئن هستید که می‌خواهید{" "}
+            <span
+              className="underline inline-block max-w-[230px] truncate "
+              dir="auto"
+            >
+              {removeItem.name}
+            </span>{" "}
+            را حذف کنید؟
+>>>>>>> 574ed32 (Add solution for challenge 4)
           </p>
           <p className="text-sm text-gray-500 mt-4">
             این عمل قابل بازگشت نیست.
@@ -66,13 +128,21 @@ const DeleteModal = ({ onClose, message, itemName, handleConfirm }) => {
         {/* Actions */}
         <div className="flex gap-3 justify-center">
           <button
+<<<<<<< HEAD
             onClick={handleConfirm}
+=======
+            onClick={removeRequestHandler}
+>>>>>>> 574ed32 (Add solution for challenge 4)
             className="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors font-medium"
           >
             حذف کردن
           </button>
           <button
+<<<<<<< HEAD
             onClick={onClose}
+=======
+            onClick={closeModalHandler}
+>>>>>>> 574ed32 (Add solution for challenge 4)
             className="px-6 py-2 border border-gray-300 text-gray-700 bg-white rounded-md hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-medium"
           >
             انصراف

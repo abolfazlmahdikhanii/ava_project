@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from "react";
 import UploadContent from "../UploadContent/UploadContent";
 import Icon from "../Icon/Icon";
@@ -6,11 +7,14 @@ import Icon from "../Icon/Icon";
 const UploadWrapper = ({ activeTab }) => {
   let uploadContent = null;
 =======
+=======
+>>>>>>> 574ed32 (Add solution for challenge 4)
 import React, { useEffect, useRef, useState } from "react";
 import UploadContent from "../UploadContent/UploadContent";
 import Icon from "../Icon/Icon";
 import toast from "react-hot-toast";
 import { isValidURL, toastOption } from "../../helper/helper";
+<<<<<<< HEAD
 
 const UploadWrapper = ({ activeTab, onRecord }) => {
   const [isRecording, setIsRecording] = useState(false);
@@ -18,10 +22,34 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
   const [audioUrl, setAudioUrl] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
   const [resultContent, setResultContent] = useState([]);
+=======
+import { useDispatch, useSelector } from "react-redux";
+import {
+  resetUploading,
+  uploadFromUrl,
+  uploadMedia,
+} from "../../Redux/store/Transcribe";
+import useAudioRecorder from "../../hooks/useAudioRecorder";
+import Loader from "../Loader/Loader";
+
+const UploadWrapper = ({ activeTab }) => {
+  const { currentUpload, isLoading } = useSelector((state) => state.transcribe);
+  const dispatch = useDispatch();
+  const {
+    isRecording,
+    audioBlob,
+    error,
+    startRecording,
+    stopRecording,
+    resetRecording,
+  } = useAudioRecorder();
+
+>>>>>>> 574ed32 (Add solution for challenge 4)
   const [mediaUrl, setMediaUrl] = useState("");
 
   let uploadContent = null;
 
+<<<<<<< HEAD
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
   const fileInputRef = useRef(null);
@@ -67,12 +95,36 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
       uploadAudio();
     } else if (!isRecording) {
       startRecording();
+=======
+  const fileInputRef = useRef(null);
+  useEffect(() => {
+    dispatch(resetUploading());
+  }, [activeTab]);
+  // Start recording function
+  useEffect(() => {
+    if (!isRecording && audioBlob) {
+      uploadAudioHandler(audioBlob);
+    }
+  }, [isRecording, audioBlob]);
+  // Stop recording function
+  const toggleAudioHandler = async () => {
+    if (isRecording) {
+      stopRecording(); // This will trigger the blob creation
+    } else {
+      await startRecording();
+>>>>>>> 574ed32 (Add solution for challenge 4)
     }
   };
 
   // Upload audio to API
+<<<<<<< HEAD
   const uploadAudio = async () => {
     if (!audioBlob) {
+=======
+  const uploadAudioHandler = async (blob) => {
+    const audioFile = blob || audioBlob;
+    if (!audioFile) {
+>>>>>>> 574ed32 (Add solution for challenge 4)
       toast.error("لطفاً یک فایل صوتی انتخاب کنید", toastOption);
       return;
     }
@@ -81,6 +133,7 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
     const toastId = toast.loading("درحال ارسال درخواست...", toastOption);
 
     try {
+<<<<<<< HEAD
       const formData = new FormData();
       formData.append("media", audioBlob, `REC-${new Date().getTime()}.wav`);
 
@@ -120,6 +173,34 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
   };
   const handleFileChange = async (event) => {
     const file = event.target.files[0];
+=======
+      const audioAction = await dispatch(
+        uploadMedia({ file: audioFile, type: "audio", isRecord: true })
+      );
+      if (uploadMedia.fulfilled.match(audioAction)) {
+        toast.success("ارسال با موفقیت انجام شد", {
+          ...toastOption,
+          id: toastId,
+        });
+        resetRecording();
+      } else if (uploadMedia.rejected.match(audioAction)) {
+        toast.error("ارسال با خطا مواجه شد.دوباره تلاش کنید", {
+          ...toastOption,
+          id: toastId,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      // Update toast to error
+      toast.error("خطای پیش بینی نشده! لطفاً دوباره تلاش کنید", {
+        ...toastOption,
+        id: toastId,
+      });
+    }
+  };
+
+  const validateFileUploader = (file) => {
+>>>>>>> 574ed32 (Add solution for challenge 4)
     if (!file) return;
 
     // Validate file type
@@ -145,6 +226,7 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
       fileInputRef.current.value = ""; // Reset input
       return;
     }
+<<<<<<< HEAD
 
     // Start upload immediately
     await uploadMedia(file);
@@ -205,17 +287,55 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
       fileInputRef.current.value = ""; // Reset input after upload
     }
   };
+=======
+  };
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    validateFileUploader(file);
+    // Start upload immediately
+    const toastId = toast.loading("درحال آپلود فایل...", toastOption);
+
+    try {
+      const mediaAction = await dispatch(
+        uploadMedia({ file, type: file.type, isRecord: false })
+      );
+      if (uploadMedia.fulfilled.match(mediaAction)) {
+        toast.success("آپلود با موفقیت انجام شد", {
+          ...toastOption,
+          id: toastId,
+        });
+      } else if (uploadMedia.rejected.match(mediaAction)) {
+        toast.error("خطا در آپلود فایل", {
+          ...toastOption,
+          id: toastId,
+        });
+      }
+    } catch (error) {
+      toast.error("خطای پیش بینی نشده! لطفاً دوباره تلاش کنید", {
+        ...toastOption,
+        id: toastId,
+      });
+    } finally {
+      fileInputRef.current.value = ""; // Reset input after upload
+    }
+  };
+
+>>>>>>> 574ed32 (Add solution for challenge 4)
   const handleUrlSubmit = async (e) => {
     e.preventDefault();
     if (!isValidURL(mediaUrl)) {
       toast.error("لطفاً یک نشانی اینترنتی کنید", toastOption);
       return;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 574ed32 (Add solution for challenge 4)
     // Show loading toast and keep its reference
     const toastId = toast.loading("درحال ارسال درخواست...", toastOption);
 
     try {
+<<<<<<< HEAD
       const media = {
         media_urls: [mediaUrl],
       };
@@ -264,21 +384,53 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
     setMediaUrl("");
   };
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+      const urlAction = await dispatch(uploadFromUrl(mediaUrl));
+      if (uploadFromUrl.fulfilled.match(urlAction)) {
+        toast.success("ثبت نشانی اینترنتی با موفقیت انجام شد", {
+          ...toastOption,
+          id: toastId,
+        });
+        setMediaUrl("");
+      } else if (uploadFromUrl.rejected.match(urlAction)) {
+        toast.error("خطا در ثبت نشانی اینترنتی", {
+          ...toastOption,
+          id: toastId,
+        });
+      }
+    } catch (error) {
+      // Update toast to error
+      toast.error("خطای پیش بینی نشده! لطفاً دوباره تلاش کنید", {
+        ...toastOption,
+        id: toastId,
+      });
+    }
+  };
+
+>>>>>>> 574ed32 (Add solution for challenge 4)
   switch (activeTab) {
     case "record":
       uploadContent = (
         <>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <button className="upload-wrapper__btn bg-[#00B3A1] hover:bg-[#00B3A1]/90 ">
 =======
+=======
+>>>>>>> 574ed32 (Add solution for challenge 4)
           <button
             className={`upload-wrapper__btn bg-[#00B3A1] rounded-full p-4 z-10 relative transition-colors duration-200 ${
               isRecording ? "recording-btn" : " hover:bg-[#00B3A1]/90"
             }`}
             onClick={toggleAudioHandler}
             aria-label={isRecording ? "Stop recording" : "Start recording"}
+<<<<<<< HEAD
           >
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+            disabled={isLoading}
+          >
+>>>>>>> 574ed32 (Add solution for challenge 4)
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -292,6 +444,7 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
               ></path>
             </svg>
 <<<<<<< HEAD
+<<<<<<< HEAD
             
           </button>
           <p className="w-[276px] font-light text-[#626262] mt-[10px] text-center leading-[1.8]">
@@ -299,6 +452,8 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
             شود
           </p>
 =======
+=======
+>>>>>>> 574ed32 (Add solution for challenge 4)
           </button>
           {!isRecording ? (
             <p className="w-[276px] font-light text-[#626262] mt-[12px] text-center leading-[1.8]">
@@ -315,7 +470,10 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
               </p>
             </>
           )}
+<<<<<<< HEAD
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+>>>>>>> 574ed32 (Add solution for challenge 4)
         </>
       );
       break;
@@ -323,8 +481,11 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
       uploadContent = (
         <>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <button className="upload-wrapper__btn bg-[#118AD3] hover:bg-[#118AD3]/90 ">
 =======
+=======
+>>>>>>> 574ed32 (Add solution for challenge 4)
           <label
             htmlFor="upload-file"
             className="upload-wrapper__btn bg-[#118AD3] hover:bg-[#118AD3]/90 "
@@ -335,10 +496,16 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
               className="hidden"
               accept="audio/*,video/*"
               onChange={handleFileChange}
+<<<<<<< HEAD
               disabled={isUploading}
               ref={fileInputRef}
             />
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+              disabled={isLoading}
+              ref={fileInputRef}
+            />
+>>>>>>> 574ed32 (Add solution for challenge 4)
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="33"
@@ -369,10 +536,14 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
               ></path>
             </svg>
 <<<<<<< HEAD
+<<<<<<< HEAD
           </button>
 =======
           </label>
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+          </label>
+>>>>>>> 574ed32 (Add solution for challenge 4)
           <p className="w-[415px] font-light text-[#626262] mt-[12px] text-center leading-[1.8]">
             برای بارگذاری فایل گفتاری (صوتی/تصویری)، دکمه را فشار دهید متن پیاده
             شده آن، در اینجا ظاهر می شود
@@ -384,12 +555,16 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
       uploadContent = (
         <>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <div className="w-[328px] rounded-full border-[0.5px] border-[#FF1654] py-1.5 h-[46px] overflow-hidden flex items-center justify-end gap-x-3 pl-4.5">
 =======
+=======
+>>>>>>> 574ed32 (Add solution for challenge 4)
           <form
             onSubmit={handleUrlSubmit}
             className="w-[328px] rounded-full border-[0.5px] border-[#FF1654] py-1.5 h-[46px] overflow-hidden flex items-center justify-end gap-x-3 pl-4.5"
           >
+<<<<<<< HEAD
 >>>>>>> 0604e09 (Add solution for challenge 3)
             <input
               type="text"
@@ -404,6 +579,13 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
             </button>
           </div>
 =======
+=======
+            <input
+              type="text"
+              className="w-[80%] h-full text-gray-700 placeholder:font-light placeholder:text-[#626262] outline-0"
+              dir="auto"
+              placeholder="example.com/sample.mp3"
+>>>>>>> 574ed32 (Add solution for challenge 4)
               value={mediaUrl}
               onChange={(e) => setMediaUrl(e.target.value.trim())}
             />
@@ -417,7 +599,10 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
               />
             </button>
           </form>
+<<<<<<< HEAD
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+>>>>>>> 574ed32 (Add solution for challenge 4)
           <p className="w-[415px] font-light text-[#626262] mt-[13px] text-center leading-[1.8] ">
             نشانی اینترنتی فایل حاوی گفتار (صوتی/تصویری) را وارد <br />و دکمه را
             فشار دهید
@@ -430,12 +615,17 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
   }
   return (
     <div
+<<<<<<< HEAD
       className={`h-[429px] w-full ${activeTab}--active transition-all ${
+=======
+      className={`h-[429px] w-full ${activeTab}--active transition-all relative overflow-hidden ${
+>>>>>>> 574ed32 (Add solution for challenge 4)
         activeTab === "record"
           ? "rounded-[25px] rounded-tr-none"
           : "rounded-[25px] "
       }`}
     >
+<<<<<<< HEAD
 <<<<<<< HEAD
       {/* <div className="flex flex-col items-center justify-center h-full">
         {uploadContent}
@@ -445,11 +635,22 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
         </div>
 =======
       {!resultContent.length ? (
+=======
+      {isLoading && (
+        <div className="w-full h-full bg-gray-300/20 backdrop-blur-md absolute inset-0 grid place-items-center z-20">
+          <div>
+            <Loader />
+          </div>
+        </div>
+      )}
+      {!currentUpload ? (
+>>>>>>> 574ed32 (Add solution for challenge 4)
         <div className="flex flex-col items-center justify-center h-full">
           {uploadContent}
         </div>
       ) : (
         <div className=" py-2 px-5">
+<<<<<<< HEAD
           <UploadContent
             contents={resultContent[0]?.segments}
             url={resultContent[0]?.media_url}
@@ -459,6 +660,11 @@ const UploadWrapper = ({ activeTab, onRecord }) => {
         </div>
       )}
 >>>>>>> 0604e09 (Add solution for challenge 3)
+=======
+          <UploadContent />
+        </div>
+      )}
+>>>>>>> 574ed32 (Add solution for challenge 4)
     </div>
   );
 };

@@ -1,9 +1,36 @@
 import React, { useEffect, useRef, useState } from "react";
 import Icon from "../Icon/Icon";
+<<<<<<< HEAD
 import { formatDuration, formatTime, toastOption } from "../../helper/helper";
 import toast from "react-hot-toast";
 
 const AudioPlayer = ({ playerColor, audioUrl, durationAudio, onActive }) => {
+=======
+import {
+  formatDuration,
+  formatTime,
+  timeToSeconds,
+  toastOption,
+} from "../../helper/helper";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setActiveAudioTime,
+  setActiveContent,
+  setPlayerColor,
+} from "../../Redux/store/Transcribe";
+import { useLocation, useParams } from "react-router-dom";
+
+const AudioPlayer = () => {
+  const { currentUpload, selectedArchive, activeTime, playerColor } =
+    useSelector((state) => state.transcribe);
+  const dispatch = useDispatch();
+  const {
+    duration: durationAudio,
+    url,
+    media_url,
+  } = selectedArchive ? selectedArchive : currentUpload;
+>>>>>>> 574ed32 (Add solution for challenge 4)
   const progressRef = useRef(null);
   const audioRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -12,6 +39,46 @@ const AudioPlayer = ({ playerColor, audioUrl, durationAudio, onActive }) => {
   const [volume, setVolume] = useState(0.7);
   const [isError, setIsError] = useState(false);
   const volumeRef = useRef(null);
+<<<<<<< HEAD
+=======
+  const location = useLocation();
+  useEffect(() => {
+    // Reset function
+    const resetPlayer = () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+      setCurrentTime(0);
+      setIsPlaying(false);
+      dispatch(setActiveContent(null));
+    };
+
+    // Reset when audio source changes
+    resetPlayer();
+
+    return () => {
+      resetPlayer();
+    };
+  }, [url, media_url, dispatch]);
+  useEffect(() => {
+    return () => {
+      // Cleanup on component unmount (route change)
+      dispatch(setActiveContent(null));
+
+      setCurrentTime(0);
+    };
+  }, [dispatch, location.pathname]);
+
+  useEffect(() => {
+    if (!isError && activeTime !== null) {
+      const newTime = timeToSeconds(activeTime);
+      audioRef.current.currentTime = newTime;
+      setCurrentTime(newTime);
+      dispatch(setActiveContent(audioRef.current.currentTime));
+    }
+  }, [isError, activeTime]);
+>>>>>>> 574ed32 (Add solution for challenge 4)
 
   const handlePlayPause = (e) => {
     e.stopPropagation();
@@ -37,28 +104,46 @@ const AudioPlayer = ({ playerColor, audioUrl, durationAudio, onActive }) => {
       const clickX = e.clientX - rect.left;
       const percentage = Math.min(1, Math.max(0, clickX / rect.width));
       const newTime = percentage * duration;
+<<<<<<< HEAD
 
       setCurrentTime(newTime);
       audioRef.current.currentTime = newTime;
+=======
+      if (!isNaN(newTime)) {
+        setCurrentTime(newTime);
+        audioRef.current.currentTime = newTime;
+      }
+>>>>>>> 574ed32 (Add solution for challenge 4)
     }
   };
   const handleLoadedMetadata = (e) => {
     const audio = e.target;
     audio.volume = volume;
     setDuration(audio.duration);
+<<<<<<< HEAD
     console.log(audio.duration);
+=======
+>>>>>>> 574ed32 (Add solution for challenge 4)
   };
 
   const handleTimeUpdate = () => {
     const audio = audioRef.current;
 
     setCurrentTime(audio.currentTime);
+<<<<<<< HEAD
     onActive(audio.currentTime);
+=======
+    dispatch(setActiveContent(audio.currentTime));
+>>>>>>> 574ed32 (Add solution for challenge 4)
   };
 
   const handleEnded = () => {
     setIsPlaying(false);
     setCurrentTime(0);
+<<<<<<< HEAD
+=======
+    dispatch(setActiveContent(0));
+>>>>>>> 574ed32 (Add solution for challenge 4)
   };
 
   const updateVolume = (e) => {
@@ -70,6 +155,7 @@ const AudioPlayer = ({ playerColor, audioUrl, durationAudio, onActive }) => {
     audioRef.current.volume = newVolume;
   };
   return (
+<<<<<<< HEAD
     <div className="bg-white  w-10/12 mx-auto pt-3 max-w-[520px] ">
       <div className="flex items-center gap-2 bg-[#f8f8f8] h-[34px] px-3 rounded-[10px]">
         {/* Volume Control */}
@@ -78,12 +164,30 @@ const AudioPlayer = ({ playerColor, audioUrl, durationAudio, onActive }) => {
           ref={audioRef}
           src={audioUrl}
 
+=======
+    <div
+      className={`bg-white  mx-auto pt-3  ${
+        currentUpload ? "w-[540px]" : "max-w-[520px]  w-10/12"
+      }`}
+    >
+      <div className="flex items-center gap-2 bg-[#f8f8f8] h-[34px] px-3 rounded-[10px]">
+        {/* Volume Control */}
+
+        <audio
+          ref={audioRef}
+>>>>>>> 574ed32 (Add solution for challenge 4)
           preload="metadata"
           onLoadedMetadata={handleLoadedMetadata}
           onTimeUpdate={handleTimeUpdate}
           onEnded={handleEnded}
           className="hidden"
+<<<<<<< HEAD
         />
+=======
+        >
+          <source src={url || media_url} />
+        </audio>
+>>>>>>> 574ed32 (Add solution for challenge 4)
 
         <div className="flex items-center gap-1.5 ml-1.5">
           <div

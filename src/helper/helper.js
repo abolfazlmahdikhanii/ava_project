@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+import toast from "react-hot-toast";
+
+>>>>>>> 574ed32 (Add solution for challenge 4)
 export const getFileExtension = (url) => {
   if (!url) return "-";
 
@@ -64,6 +69,47 @@ export const isValidURL = (string) => {
     return false;
   }
 };
+<<<<<<< HEAD
+=======
+export const timeToSeconds = (timeStr) => {
+  const [hours, minutes, seconds] = timeStr.split(":").map(Number);
+  return hours * 3600 + minutes * 60 + seconds;
+};
+
+export function formatFileSize(bytes, decimalPlaces = 2) {
+  if (bytes === 0) return "۰ بایت";
+
+  const k = 1024;
+  const sizes = ["بایت", "کیلوبایت", "مگابایت", "گیگابایت"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  const formattedNumber = (bytes / Math.pow(k, i)).toFixed(decimalPlaces);
+
+  const persianNumber = formattedNumber
+    .toString()
+    .replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
+
+  return persianNumber + " " + sizes[i];
+}
+
+
+
+export const copyTextHandler = async (segments) => {
+  if (!segments?.some((item) => item.text?.trim() !== "")) {
+    toast.error("متن قابل کپی وجود ندارد", toastOption);
+    return;
+  }
+
+  const txt = segments.map((item) => item.text).join(" ");
+
+  try {
+    await navigator.clipboard.writeText(txt);
+    toast.success("متن با موفقیت کپی شد", toastOption);
+  } catch (err) {
+    toast.error("کپی کردن متن با مشکل مواجه شد", toastOption);
+  }
+};
+>>>>>>> 574ed32 (Add solution for challenge 4)
 
 export const toastOption = {
   className: "custom-toast",

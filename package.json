@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "name": "ava-project",
   "private": true,
   "version": "0.0.0",
@@ -37,5 +38,11 @@
 {
   "dependencies": {
     "react-hot-toast": "^2.5.2"
+=======
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1"
+>>>>>>> 574ed32 (Add solution for challenge 4)
   }
 }
