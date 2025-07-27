@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 import toast from "react-hot-toast";
 
->>>>>>> 574ed32 (Add solution for challenge 4)
 export const getFileExtension = (url) => {
   if (!url) return "-";
 
@@ -69,8 +66,6 @@ export const isValidURL = (string) => {
     return false;
   }
 };
-<<<<<<< HEAD
-=======
 export const timeToSeconds = (timeStr) => {
   const [hours, minutes, seconds] = timeStr.split(":").map(Number);
   return hours * 3600 + minutes * 60 + seconds;
@@ -109,7 +104,6 @@ export const copyTextHandler = async (segments) => {
     toast.error("کپی کردن متن با مشکل مواجه شد", toastOption);
   }
 };
->>>>>>> 574ed32 (Add solution for challenge 4)
 
 export const toastOption = {
   className: "custom-toast",

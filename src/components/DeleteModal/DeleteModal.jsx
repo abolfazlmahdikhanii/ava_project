@@ -1,8 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-
-const DeleteModal = ({ onClose, message, itemName, handleConfirm }) => {
-=======
 import { useDispatch, useSelector } from "react-redux";
 import {
   getArchiveData,
@@ -39,22 +35,11 @@ const DeleteModal = () => {
   const closeModalHandler = () => {
     dispatch(setRemoveContent(null));
   };
->>>>>>> 574ed32 (Add solution for challenge 4)
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-<<<<<<< HEAD
-        onClick={onClose}
-      />
-
-      {/* Modal */}
-      <div className="relative bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 p-6 rtl">
-        {/* Close button */}
-        <button
-          onClick={onClose}
-=======
         // onClick={closeModalHandler}
       />
 
@@ -63,7 +48,6 @@ const DeleteModal = () => {
         {/* Close button */}
         <button
           onClick={closeModalHandler}
->>>>>>> 574ed32 (Add solution for challenge 4)
           className="absolute top-4 left-4 text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-full hover:bg-gray-100"
         >
           <svg
@@ -105,10 +89,6 @@ const DeleteModal = () => {
         {/* Content */}
         <div className="text-center mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">حذف</h3>
-<<<<<<< HEAD
-          <p className="text-gray-600 leading-relaxed">
-            آیا مطمئن هستید که می‌خواهید {itemName} را حذف کنید؟
-=======
           <p className="text-gray-600 leading-[1.8] flex items-center flex-wrap gap-1.5 justify-center">
             آیا مطمئن هستید که می‌خواهید{" "}
             <span
@@ -118,7 +98,6 @@ const DeleteModal = () => {
               {removeItem.name}
             </span>{" "}
             را حذف کنید؟
->>>>>>> 574ed32 (Add solution for challenge 4)
           </p>
           <p className="text-sm text-gray-500 mt-4">
             این عمل قابل بازگشت نیست.
@@ -128,21 +107,13 @@ const DeleteModal = () => {
         {/* Actions */}
         <div className="flex gap-3 justify-center">
           <button
-<<<<<<< HEAD
-            onClick={handleConfirm}
-=======
             onClick={removeRequestHandler}
->>>>>>> 574ed32 (Add solution for challenge 4)
             className="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors font-medium"
           >
             حذف کردن
           </button>
           <button
-<<<<<<< HEAD
-            onClick={onClose}
-=======
             onClick={closeModalHandler}
->>>>>>> 574ed32 (Add solution for challenge 4)
             className="px-6 py-2 border border-gray-300 text-gray-700 bg-white rounded-md hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors font-medium"
           >
             انصراف

@@ -1,24 +1,8 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-import React, { useState } from "react";
-=======
 import React, { useRef, useState } from "react";
->>>>>>> 0604e09 (Add solution for challenge 3)
-=======
-import React, { useRef, useState } from "react";
->>>>>>> 574ed32 (Add solution for challenge 4)
 import UploadTab from "../components/UploadTab/UploadTab";
 import UploadWrapper from "../components/UploadWrapper/UploadWrapper";
 import Dropdown from "../components/Dropdown/Dropdown";
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-const Speech = () => {
-  const [activeTab, setActiveTab] = useState("record");
-=======
-=======
->>>>>>> 574ed32 (Add solution for challenge 4)
 const Speech = () => {
   const [activeTab, setActiveTab] = useState("record");
 
@@ -26,10 +10,6 @@ const Speech = () => {
   const [selectedLanguage, setSelectedLanguage] = useState("persian");
 
  
-<<<<<<< HEAD
->>>>>>> 0604e09 (Add solution for challenge 3)
-=======
->>>>>>> 574ed32 (Add solution for challenge 4)
   return (
     <section className="mt-[10px] w-full flex flex-col ">
       {/* title */}
@@ -108,13 +88,6 @@ const Speech = () => {
             onActive={setActiveTab}
             activeTab={activeTab}
           >
-<<<<<<< HEAD
-<<<<<<< HEAD
-     
-=======
->>>>>>> 0604e09 (Add solution for challenge 3)
-=======
->>>>>>> 574ed32 (Add solution for challenge 4)
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="17"
@@ -134,15 +107,7 @@ const Speech = () => {
           </UploadTab>
         </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <UploadWrapper activeTab={activeTab} />
-=======
         <UploadWrapper activeTab={activeTab}  />
->>>>>>> 0604e09 (Add solution for challenge 3)
-=======
-        <UploadWrapper activeTab={activeTab}  />
->>>>>>> 574ed32 (Add solution for challenge 4)
         <div className="flex items-center gap-x-4 justify-end mt-4">
           <p className="text-[#626262] text-sm font-light">زبان گفتار :</p>
           <Dropdown

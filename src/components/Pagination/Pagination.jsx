@@ -1,51 +1,7 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-import React from "react";
-import Icon from "../Icon/Icon";
-
-const Pagination = () => {
-  return (
-    <div className="bg-white px-6 py-4">
-      <div className="flex items-center justify-center gap-2 font-light">
-        <button className="text-gray-600 h-8 w-8 p-0">
-        <Icon name="arrow-right" width={6} height={10}  className="text-gray-500" />
-        </button>
-        <span className="text-sm text-gray-600 px-2">۳۵۴</span>
-        <span className="text-sm text-gray-600">...</span>
-        <span className="text-sm text-gray-600 px-2">۱۴۳</span>
-        <span className="text-sm text-gray-600 px-2">۱۲۵</span>
-        <button className="bg-teal-500 hover:bg-teal-600 text-white h-8 min-w-[32px] text-sm rounded-full">
-          ۱۲۴
-        </button>
-        <span className="text-sm text-gray-600 px-2">۱۲۳</span>
-        <span className="text-sm text-gray-600">...</span>
-        <span className="text-sm text-gray-600 px-2">۱</span>
-        <button className="text-gray-600 h-8 w-8 p-0">
-             <Icon name="arrow-left" width={6} height={10}  className="text-gray-500" />
-=======
-=======
->>>>>>> 574ed32 (Add solution for challenge 4)
 import React, { Fragment, useEffect, useState } from "react";
 import Icon from "../Icon/Icon";
 import { Link } from "react-router-dom";
 import { getUrlParam } from "../../helper/helper";
-<<<<<<< HEAD
-
-const Pagination = ({
-  count,
-  prevUrl,
-  nextUrl,
-  currentPage = 1,
-  onPageChange,
-}) => {
-  const [totalPages, setTotalPages] = useState(1);
-  const [activePage, setActivePage] = useState(1);
-  useEffect(() => {
-    const total = Math.ceil(count / 10);
-    setTotalPages(total);
-  }, [count, currentPage]);
-=======
 import { useDispatch, useSelector } from "react-redux";
 import { getArchiveData } from "../../Redux/store/Transcribe";
 
@@ -57,7 +13,6 @@ const Pagination = () => {
 
   const [activePage, setActivePage] = useState(1);
 
->>>>>>> 574ed32 (Add solution for challenge 4)
   const getPageNumbers = () => {
     const pages = [];
     let maxVisiblePages = Math.ceil(totalPages / 2);
@@ -96,28 +51,17 @@ const Pagination = () => {
     if (nextUrl) {
       const nextPage = getUrlParam(nextUrl, "page");
       setActivePage(nextPage > 1 ? parseInt(nextPage) : 1);
-<<<<<<< HEAD
-      onPageChange(nextPage);
-=======
       dispatch(getArchiveData(nextPage));
->>>>>>> 574ed32 (Add solution for challenge 4)
     }
   };
   const prevPageHandler = () => {
     if (prevUrl) {
       const prevPage = getUrlParam(prevUrl, "page");
       setActivePage(prevPage > 1 ? parseInt(prevPage) : 1);
-<<<<<<< HEAD
-      onPageChange(prevPage);
-    }
-  };
-  console.log(activePage);
-=======
       dispatch(getArchiveData(prevPage));
     }
   };
 
->>>>>>> 574ed32 (Add solution for challenge 4)
   return (
     <div className="bg-white px-6 py-4">
       <div className="flex items-center justify-center gap-2 font-light">
@@ -147,11 +91,7 @@ const Pagination = () => {
                 }`}
                 onClick={() => {
                   setActivePage(page);
-<<<<<<< HEAD
-                  onPageChange(page !== 1 ? page.toString() : "");
-=======
                   dispatch(getArchiveData(page !== 1 ? page.toString() : ""));
->>>>>>> 574ed32 (Add solution for challenge 4)
                 }}
               >
                 {page.toLocaleString("fa")}
@@ -171,10 +111,6 @@ const Pagination = () => {
             height={10}
             className="text-current"
           />
-<<<<<<< HEAD
->>>>>>> 0604e09 (Add solution for challenge 3)
-=======
->>>>>>> 574ed32 (Add solution for challenge 4)
         </button>
       </div>
     </div>
