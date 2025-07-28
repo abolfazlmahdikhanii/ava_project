@@ -8,7 +8,7 @@ import store from "./Redux/store.js";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <Routes>
+    <Routes basename="/ava_project">
       <App />
     </Routes>
   </Provider>
