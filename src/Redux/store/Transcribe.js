@@ -20,6 +20,7 @@ export const uploadMedia = createAsyncThunk(
           method: "POST",
           headers: {
             Authorization: "Token a85d08400c622b50b18b61e239b9903645297196",
+            "Access-Control-Allow-Origin": "*",
           },
           body: formData,
         }
@@ -51,6 +52,7 @@ export const uploadFromUrl = createAsyncThunk(
           headers: {
             "Content-Type": "application/json",
             Authorization: "Token a85d08400c622b50b18b61e239b9903645297196",
+            "Access-Control-Allow-Origin": "*",
           },
           body: JSON.stringify(newMedia),
         }
@@ -79,6 +81,7 @@ export const getArchiveData = createAsyncThunk(
           method: "GET",
           headers: {
             Authorization: "Token a85d08400c622b50b18b61e239b9903645297196",
+            "Access-Control-Allow-Origin": "*",
           },
         }
       );
@@ -101,6 +104,7 @@ export const removeArchive = createAsyncThunk(
       method: "DELETE",
       headers: {
         Authorization: "Token a85d08400c622b50b18b61e239b9903645297196",
+        "Access-Control-Allow-Origin": "*",
       },
     })
       .then((res) => {
@@ -184,7 +188,6 @@ const transcribeSlice = createSlice({
     builder.addCase(uploadFromUrl.fulfilled, (state, action) => {
       state.isLoading = false;
       state.currentUpload = action.payload[0];
-    
     });
     // get Archive
 
@@ -207,12 +210,9 @@ const transcribeSlice = createSlice({
 
     builder.addCase(removeArchive.rejected, (state, action) => {
       state.error = action.payload.detail;
-    
     });
     builder.addCase(removeArchive.fulfilled, (state, action) => {
       state.isLoading = false;
-  
-    
     });
   },
 });
