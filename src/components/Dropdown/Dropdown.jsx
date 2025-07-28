@@ -15,7 +15,7 @@ const Dropdown = ({
     if (type === "select" && !selectedItem && items.length > 0) {
       setSelectedItem(items[0]);
     }
-  }, [type,selectedItem, items]);
+  }, [type, selectedItem, items]);
 
   const toggleDropdown = () => setIsShow((prev) => !prev);
 
@@ -56,14 +56,20 @@ const Dropdown = ({
             <p>{title}</p>
           </div>
         )}
-        <Icon
+        <svg
+          id="arrow-down"
           width={7}
           height={5}
-          name="arrow-down"
+          viewBox="0 0 7 5"
           className={`text-[#00BA9F] mt-0.5 absolute left-4 transition-transform ${
             isShow ? "rotate-180" : ""
           }`}
-        />
+        >
+          <path
+            d="M4.65282 4.12713C4.25404 4.58759 3.53973 4.58759 3.14096 4.12713L1.08888 1.7576C0.528006 1.10995 0.988058 0.102941 1.84481 0.102941L5.94896 0.102942C6.80571 0.102942 7.26577 1.10995 6.70489 1.7576L4.65282 4.12713Z"
+            fill="currentColor"
+          />
+        </svg>
       </div>
 
       {isShow && (
