@@ -75,7 +75,7 @@ const UploadWrapper = ({ activeTab }) => {
         });
       }
     } catch (error) {
-      console.log(error);
+  
       // Update toast to error
       toast.error("خطای پیش بینی نشده! لطفاً دوباره تلاش کنید", {
         ...toastOption,

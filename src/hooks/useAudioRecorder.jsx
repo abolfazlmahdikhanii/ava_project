@@ -56,7 +56,7 @@ const useAudioRecorder = (onRecordingComplete) => {
       streamRef.current = stream;
       return true;
     } catch (err) {
-      console.error("Permission denied or error:", err);
+      
       setPermissionStatus("denied");
 
       toast.error(
@@ -121,7 +121,7 @@ const useAudioRecorder = (onRecordingComplete) => {
 
       setError(null);
     } catch (err) {
-      console.error("Error starting recording:", err);
+     
       setError("شروع ضبط ناموفق بود. لطفاً دوباره تلاش کنید.");
     }
   }, [checkPermission, audioUrl, onRecordingComplete]);

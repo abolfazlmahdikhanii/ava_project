@@ -44,7 +44,7 @@ const ArchiveItem = ({ id, filename, duration, processed, url, segments }) => {
         throw new Error("Content-Length header not found");
       }
     } catch (error) {
-      console.log(`Failed to get file size from URL: ${error.message}`);
+      setFileSize(null);
     }
   }
   const handleToggle = () => {
@@ -145,7 +145,6 @@ const ArchiveItem = ({ id, filename, duration, processed, url, segments }) => {
       setIsDownloading(false);
       toast.success("دانلود با موفقیت انجام شد", toastOption);
     } catch (error) {
-      console.error("Download failed:", error);
       // Fallback method
       const a = document.createElement("a");
       a.href = url;
