@@ -20,7 +20,7 @@ export const uploadMedia = createAsyncThunk(
           method: "POST",
           headers: {
             Authorization: "Token a85d08400c622b50b18b61e239b9903645297196",
-            "Access-Control-Allow-Origin":"https://abolfazlmahdikhanii.github.io"
+            
           },
           body: formData,
         }
