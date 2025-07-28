@@ -1,6 +1,7 @@
 {
   "name": "ava-project",
   "private": false,
+  "homepage": "https://github.com/abolfazlmahdikhanii/ava_project/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
