@@ -21,7 +21,7 @@ export default function Icon({
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMidYMid meet"
     >
-      <use xlinkHref={`/sprite.svg#${name}`} />
+      <use xlinkHref={`../../../src/assets/images/sprite.svg#${name}`} />
     </svg>
   );
 }
